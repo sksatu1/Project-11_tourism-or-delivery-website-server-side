@@ -24,7 +24,7 @@ async function run() {
 
         const database = client.db("tourism");
         const placesCollection = database.collection("places");
-        // const orderCollection = database.collection("orders");
+        const orderCollection = database.collection("orders");
 
 
         // get API ----------------------
@@ -54,7 +54,6 @@ async function run() {
 
         // post order API -------------------------
         app.post('/orders', async (req, res) => {
-            const orderCollection = database.collection(req.body.email);
             const newOrder = req.body;
             const result = await orderCollection.insertOne(newOrder);
 
