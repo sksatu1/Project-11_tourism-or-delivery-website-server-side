@@ -50,7 +50,7 @@ async function run() {
 
         app.get('/orders/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: ObjectId(id) };
+            const query = { _id: id };
             const order = await orderCollection.findOne(query);
             console.log('load place with id: ', id);
             res.send(order);
@@ -89,7 +89,7 @@ async function run() {
         app.put('/orders/:id', async (req, res) => {
             const id = req.params.id;
             const updateOrder = req.body;
-            const query = { _id: ObjectId(id) };
+            const query = { _id: id };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
