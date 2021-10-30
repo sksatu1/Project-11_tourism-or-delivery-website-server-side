@@ -76,6 +76,21 @@ async function run() {
             console.log('deleting user with id : ', result);
             res.json(result);
         });
+
+        // PUT API -------------------------------
+        app.put('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const updateOrder = req.body;
+            const query = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    status: updateOrder.status
+                },
+            };
+            const update = await orderCollection.updateOne(query, updateDoc, options);
+            res.json(update);
+        })
     }
 
     finally {
