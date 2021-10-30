@@ -24,6 +24,7 @@ async function run() {
 
         const database = client.db("tourism");
         const placesCollection = database.collection("places");
+        const orderCollection = database.collection("orders");
 
 
         // get API ----------------------
@@ -39,12 +40,22 @@ async function run() {
             const place = await placesCollection.findOne(query);
             console.log('load place with id: ', id);
             res.send(place);
-        })   
+        })
 
         // post API -------------------------
         app.post('/places', async (req, res) => {
             const newplace = req.body;
             const result = await placesCollection.insertOne(newplace);
+
+            console.log('got new user', req.body);
+            console.log('added user', result);
+            res.json(result);
+        })
+
+        // post order API -------------------------
+        app.post('/orders', async (req, res) => {
+            const newOrder = req.body;
+            const result = await orderCollection.insertOne(newOrder);
 
             console.log('got new user', req.body);
             console.log('added user', result);
