@@ -48,6 +48,14 @@ async function run() {
             res.send(place);
         })
 
+        app.get('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const order = await orderCollection.findOne(query);
+            console.log('load place with id: ', id);
+            res.send(order);
+        })
+
         // post API -------------------------
         app.post('/places', async (req, res) => {
             const newplace = req.body;
