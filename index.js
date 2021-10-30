@@ -85,7 +85,7 @@ async function run() {
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
-                    status: updateOrder.status
+                    status: 'Approved'
                 },
             };
             const update = await orderCollection.updateOne(query, updateDoc, options);
