@@ -77,7 +77,7 @@ async function run() {
         })
 
         // delete API ------------------------
-        app.delete('/places/:id', async (req, res) => {
+        app.delete('/orders/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await placesCollection.deleteOne(query);
