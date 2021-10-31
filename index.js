@@ -89,7 +89,7 @@ async function run() {
         app.put('/orders/:id', async (req, res) => {
             const id = req.params.id;
             const updateOrder = req.body;
-            const query = { _id: id };
+            const query = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
